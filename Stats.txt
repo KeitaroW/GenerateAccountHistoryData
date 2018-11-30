@@ -1,0 +1,65 @@
+Skill = Spirit
+
+Foll0w_m3: IG LVL 94	= 127 Stats		Only Stats		Stats+Base (133)		1,35
+Att: 288				= 71 Stats		56%				54,15%
+Def: 2					= 0 Stats						0,75%
+Eva: 220				= 54 Stats		42%				41,35%
+Fuel: 9					= 2 Stats		 2%				2,25%
+Skill: 3				= 0 Stats						0,75%
+Shield: 2				= 0 Stats						0,75%
+
+W4tchItBurn: AG LVL 105	= 137 Stats						(143)					1,30
+Att: 332				= 82 Stats		60%				58,05%
+Def: 120				= 39 Stats		28%				27,95%
+Eva: 1					= 0 Stats						0,70%
+Fuel: 21				= 6 Stats		4%				4,90%
+Skill: 18				= 5 Stats		4%				4,20%
+Shield: 24				= 5 Stats		4%				4,20%
+
+NoOne: BG LVL 106		= 140 Stats						(146)					1,32
+Att: 258				= 85 Stats		60%				58,90%
+Def: 87					= 28 Stats		20%				19,85%
+Eva: 48					= 15 Stats		11%				10,95%
+Fuel: 18				= 5 Stats		4%				4,10%
+Skill: 24				= 7 Stats		5%				5,50%
+Shield: 3				= 0 Stats						0,70%
+
+N4M3L3SS_MG: MG LVL 101	= 133 Stats						(139)					1,32
+Att: 20					= 9 Stats		7%				7,20%
+Def: 308				= 76 Stats		57%				55,40%
+Eva: 2					= 0 Stats						0,70%
+Fuel: 30				= 9 Stats		7%				7,20%
+Skill: 116				= 28 Stats		21%				20,85
+Shield: 36				= 11 Stats		8%				8,65%
+
+I-GEAR:
+Att +4
+Def +2
+Eva +4
+Fuel +3
+Skill +3
+Shield +2
+
+B-Gear:
+Att +3
+Def +3
+Eva +3
+Fuel +3
+Skill +3
+Shield +3
+
+A-Gear:
+Att +4
+Def +3
+Eva +1
+Fuel +3
+Skill +3
+Shield +4
+
+M-Gear:
+Att +2
+Def +4
+Eva +2
+Fuel +3
+Spirit +4
+Shield +3

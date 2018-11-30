@@ -67,15 +67,16 @@ namespace Uebung05_GenerateAccountHistoryData
             this.rnd = rnd;
         }
 
-        public void GenerateAccountData()
+        public List<Account> GenerateAccountData(List<Account> accounts)
         {
+            List<Account> changedData = new List<Account>();
+            List<Account> newAccounts = new List<Account>();
             #if DEBUG
             Account accMin = new Account(registrationDate, rnd);
             Account accMax = new Account(registrationDate, rnd);
             double min = Double.MaxValue;
             double max = Double.MinValue;
             #endif
-            List<Account> accounts = new List<Account>();
             Account temp;
             registrationDate = new DateTime(registrationDate.Year, registrationDate.Month, registrationDate.Day, 0, 0, 0);
             StreamWriter file; 
@@ -114,14 +115,15 @@ namespace Uebung05_GenerateAccountHistoryData
                 temp.Loginname = user.Loginname;
                 temp.Password = user.Password;
                 temp.CharacterName = user.Loginname;
-                accounts.Add(temp);
+                newAccounts.Add(temp);
             }
+            //random choice whether an account should be changed or not
             Console.WriteLine("File: " + (index+1));
             accounts.Sort((x, y) => DateTime.Compare(x.RegistrationDate, y.RegistrationDate));
-            int id = index * rows;
+            List<Account> merged = new List<Account>();
+            //merge should happen here
             foreach (Account account in accounts)
             {
-                account.Id = id;
                 #if DEBUG
                 if (account.Levelpercentage > max)
                 {
@@ -138,6 +140,28 @@ namespace Uebung05_GenerateAccountHistoryData
                     account.CharacterName + "\t" + account.Nation + "\t" + account.Geartype + "\t" + account.Level + "\t" + account.Levelpercentage.ToString("0.##") + "\t" + account.Spi + 
                     "\t" + account.Credits + "\t" + account.Fame + "\t" + account.Brigade + "\t" + account.Attack + "\t" + account.Defence + "\t" + account.Evasion + "\t" + 
                     account.Fuel + "\t" + account.Spirit + "\t" + account.Shield + "\t" + account.UnusedStatpoints + "\n");
+            }
+            int id = index * rows;
+            //merge should happen here
+            foreach (Account account in newAccounts)
+            {
+                account.Id = id;
+                #if DEBUG
+                if (account.Levelpercentage > max)
+                {
+                    max = account.Levelpercentage;
+                    accMax = account;
+                }
+                if (account.Levelpercentage < min)
+                {
+                    min = account.Levelpercentage;
+                    accMin = account;
+                }
+                #endif
+                file.Write(account.Id + "\t" + account.Loginname + "\t" + account.Password + "\t" + account.RegistrationDate.ToString("yyyy-MM-dd hh:mm:ss.fff") + "\t" + account.LastLoginDate.ToString(/*"yyyyMMddHHmmss" yyyy-MM-dd hh:mm:ss.fff yyyy-MM-ddTHH:mm:ss*/"yyyy-MM-dd hh:mm:ss.fff") + "\t" +
+                    account.CharacterName + "\t" + account.Nation + "\t" + account.Geartype + "\t" + account.Level + "\t" + account.Levelpercentage.ToString("0.##") + "\t" + account.Spi +
+                    "\t" + account.Credits + "\t" + account.Fame + "\t" + account.Brigade + "\t" + account.Attack + "\t" + account.Defence + "\t" + account.Evasion + "\t" +
+                    account.Fuel + "\t" + account.Spirit + "\t" + account.Shield + "\t" + account.UnusedStatpoints + "\n");
                 id++;
             }
             file.Close();
@@ -145,6 +169,7 @@ namespace Uebung05_GenerateAccountHistoryData
             Console.WriteLine("Id: " + accMin.Id + " Min: " + min.ToString("0.##"));
             Console.WriteLine("Id: " + accMax.Id + " Max: " + max.ToString("0.##"));
             #endif
+            return merged;
         }
     }
 }

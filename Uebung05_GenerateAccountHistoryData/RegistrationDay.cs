@@ -47,6 +47,11 @@ namespace Uebung05_GenerateAccountHistoryData
         bool lastLogin;
         bool characterName;
         bool levelpercentage;
+        bool password;
+        bool brigade;
+        int spi;
+        bool credits;
+        int fame;
 
         public ChooseRandom(Random rnd)
         {
@@ -63,6 +68,20 @@ namespace Uebung05_GenerateAccountHistoryData
                     {
                         Levelpercentage = true;
                     }
+                    if (rnd.NextDouble() < 0.005d)
+                    {
+                        Password = true;
+                    }
+                    if (rnd.NextDouble() < 0.01d)
+                    {
+                        Brigade = true;
+                    }
+                    if (rnd.NextDouble() < 0.08d)
+                    {
+                        Credits = true;
+                    }
+                    spi = rnd.Next(-100000, 10000000);
+                    fame = rnd.Next(0, 100);
                 }
             }
         }
@@ -70,6 +89,11 @@ namespace Uebung05_GenerateAccountHistoryData
         public bool LastLogin { get => lastLogin; set => lastLogin = value; }
         public bool CharacterName { get => characterName; set => characterName = value; }
         public bool Levelpercentage { get => levelpercentage; set => levelpercentage = value; }
+        public bool Password { get => password; set => password = value; }
+        public bool Brigade { get => brigade; set => brigade = value; }
+        public int Spi { get => spi; set => spi = value; }
+        public bool Credits { get => credits; set => credits = value; }
+        public int Fame { get => fame; set => fame = value; }
     }
 
     class RegistrationDay
@@ -181,22 +205,51 @@ namespace Uebung05_GenerateAccountHistoryData
                     {
                         newAccount.Loginname = user.Loginname;
                     }
-                    if (random.Levelpercentage)
+                    if (random.Password)
+                    {
+                        newAccount.Password = user.Password;
+                    }
+                    if (newAccount.Level < 116 && random.Levelpercentage)
                     {
                         double maxLevelPerDay = account.GetMaxLevelPerDay();
                         if (maxLevelPerDay >= 1.0d)
                         {
                             int level = rnd.Next(0, (int)maxLevelPerDay);
                             newAccount.Level = account.Level + level;
+                            newAccount.UnusedStatpoints++;
                             maxLevelPerDay -= (int)maxLevelPerDay;
                         }
                         newAccount.Levelpercentage = account.Levelpercentage + rnd.NextDouble() * (maxLevelPerDay * 100);
                         if (newAccount.Levelpercentage > 99.99d)
                         {
                             newAccount.Level++;
+                            newAccount.UnusedStatpoints++;
                             newAccount.Levelpercentage -= 99.99d;
                         }
+                        if (newAccount.Level > 115)
+                        {
+                            newAccount.Level = 115;
+                            newAccount.Levelpercentage = 0;
+                        }
+                        if (newAccount.Level % 3 == 0)
+                            newAccount.UnusedStatpoints++;
+                        newAccount.SetRandomStats();
                     }
+                    if (random.Credits)
+                    {
+                        newAccount.Credits = rnd.Next(-5000, 10000);
+                        if (newAccount.Credits < 0)
+                        {
+                            newAccount.Credits = 0;
+                        }
+                    }
+                    if (newAccount.Spi + random.Spi < int.MaxValue)
+                        newAccount.Spi += random.Spi;
+                    if (newAccount.Spi + random.Spi < 0)
+                        newAccount.Spi = 0;
+                    if (random.Brigade)
+                        newAccount.GetRandomBrigade();
+                    newAccount.Fame += random.Fame;
                     newAccount.LastLoginDate = account.GetRandomRegistrationTime(registrationDate); //uses method of registrationDate for LastLogin
                     changedData.Add(newAccount);
                 }

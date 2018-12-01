@@ -220,21 +220,21 @@ namespace Uebung05_GenerateAccountHistoryData
             LastLoginDate = GetRandomLastLoginTime(RegistrationDate);
             Nation = GetRandomNation();
             Geartype = (Geartype)rnd.Next(4);
-            Level = rnd.Next(1, 116);
-            Levelpercentage = rnd.NextDouble() * 99.99d;
-            Spi = rnd.Next(Int32.MaxValue);
-            Credits = rnd.Next(1000000000);
-            Fame = rnd.Next(50000);
+            Level = 1;
+            Levelpercentage = 0;
+            Spi = 0;                        //maxValue Int32.MaxValue
+            Credits = 0;                    //maxValue Int32.MaxValue
+            Fame = 0;                       //maxValue Int32.MaxValue
             SetRandomStats();
-            Brigade = GetRandomBrigade();
+            Brigade = "";
         }
 
-        private string GetRandomBrigade()
+        public string GetRandomBrigade()
         {
             return (Nation.Equals("ANI")) ? Brigades_ANI[rnd.Next(Brigades_ANI.Length)] : Brigades_BCU[rnd.Next(Brigades_BCU.Length)];
         }
 
-        private void SetRandomStats()
+        public void SetRandomStats()
         {
             double rndStat;
             switch (Geartype)
@@ -246,7 +246,7 @@ namespace Uebung05_GenerateAccountHistoryData
                     Fuel = 3;
                     Spirit = 3;
                     Shield = 4;
-                    for (UnusedStatpoints = (short)(Level * 1.33); UnusedStatpoints > 0; UnusedStatpoints--)
+                    while (UnusedStatpoints > 0)
                     {
                         rndStat = rnd.NextDouble() * 100;
                         if (rndStat <= 58.05d)
@@ -254,29 +254,35 @@ namespace Uebung05_GenerateAccountHistoryData
                             if (Attack < 340)
                             {
                                 Attack += 4;
-                            } else
+                            }
+                            else
                             {
                                 UnusedStatpoints++;
                             }
-                        } else if (rndStat > 58.05d && rndStat <= 86.0d)
+                        }
+                        else if (rndStat > 58.05d && rndStat <= 86.0d)
                         {
                             if (Defence < 340)
                             {
                                 Defence += 3;
-                            } else
+                            }
+                            else
                             {
                                 UnusedStatpoints++;
                             }
-                        } else if (rndStat > 86.0d && rndStat <= 86.7d)
+                        }
+                        else if (rndStat > 86.0d && rndStat <= 86.7d)
                         {
                             if (Evasion < 340)
                             {
                                 Evasion += 1;
-                            } else
+                            }
+                            else
                             {
                                 UnusedStatpoints++;
                             }
-                        } else if (rndStat > 86.7d && rndStat <= 91.6d)
+                        }
+                        else if (rndStat > 86.7d && rndStat <= 91.6d)
                         {
                             if (Fuel < 340)
                             {
@@ -286,7 +292,8 @@ namespace Uebung05_GenerateAccountHistoryData
                             {
                                 UnusedStatpoints++;
                             }
-                        } else if (rndStat > 91.6d && rndStat <= 95.8d)
+                        }
+                        else if (rndStat > 91.6d && rndStat <= 95.8d)
                         {
                             if (Spirit < 340)
                             {
@@ -296,7 +303,8 @@ namespace Uebung05_GenerateAccountHistoryData
                             {
                                 UnusedStatpoints++;
                             }
-                        } else if (rndStat > 95.8d)
+                        }
+                        else if (rndStat > 95.8d)
                         {
                             if (Shield < 340)
                             {
@@ -307,6 +315,7 @@ namespace Uebung05_GenerateAccountHistoryData
                                 UnusedStatpoints++;
                             }
                         }
+                        UnusedStatpoints--;
                     }
                     break;
                 case Geartype.B:
@@ -316,7 +325,7 @@ namespace Uebung05_GenerateAccountHistoryData
                     Fuel = 3;
                     Spirit = 3;
                     Shield = 3;
-                    for (UnusedStatpoints = (short)(Level * 1.33); UnusedStatpoints > 0; UnusedStatpoints--)
+                    while (UnusedStatpoints > 0)
                     {
                         rndStat = rnd.NextDouble() * 100;
                         if (rndStat <= 58.9d)
@@ -379,6 +388,7 @@ namespace Uebung05_GenerateAccountHistoryData
                                 UnusedStatpoints++;
                             }
                         }
+                        UnusedStatpoints--;
                     }
                     break;
                 case Geartype.I:
@@ -388,7 +398,7 @@ namespace Uebung05_GenerateAccountHistoryData
                     Fuel = 3;
                     Spirit = 3;
                     Shield = 2;
-                    for (UnusedStatpoints = (short)(Level * 1.33); UnusedStatpoints > 0; UnusedStatpoints--)
+                    while (UnusedStatpoints > 0)
                     {
                         rndStat = rnd.NextDouble() * 100;
                         if (rndStat <= 54.15d)
@@ -455,6 +465,7 @@ namespace Uebung05_GenerateAccountHistoryData
                                 UnusedStatpoints++;
                             }
                         }
+                        UnusedStatpoints--;
                     }
                     break;
                 case Geartype.M:
@@ -464,7 +475,7 @@ namespace Uebung05_GenerateAccountHistoryData
                     Fuel = 3;
                     Spirit = 4;
                     Shield = 3;
-                    for (UnusedStatpoints = (short)(Level * 1.33); UnusedStatpoints > 0; UnusedStatpoints--)
+                    while (UnusedStatpoints > 0)
                     {
                         rndStat = rnd.NextDouble() * 100;
                         if (rndStat <= 7.2d)
@@ -533,6 +544,7 @@ namespace Uebung05_GenerateAccountHistoryData
                                 UnusedStatpoints++;
                             }
                         }
+                        UnusedStatpoints--;
                     }
                     break;
             }

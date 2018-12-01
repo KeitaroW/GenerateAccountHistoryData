@@ -202,6 +202,7 @@ namespace Uebung05_GenerateAccountHistoryData
                 }
             }
             Console.WriteLine("File: " + (index+1));
+            newAccounts.Sort((x, y) => x.RegistrationDate.CompareTo(y.RegistrationDate));
             accounts.Sort((x, y) => x.RegistrationDate.CompareTo(y.RegistrationDate));
             changedData.Sort((x, y) => x.RegistrationDate.CompareTo(y.RegistrationDate));
             List<Account> merged = new List<Account>();

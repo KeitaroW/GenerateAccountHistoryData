@@ -279,12 +279,6 @@ namespace Uebung05_GenerateAccountHistoryData
             switch (Geartype)
             {
                 case Geartype.A:
-                    Attack = 4;
-                    Defence = 3;
-                    Evasion = 1;
-                    Fuel = 3;
-                    Spirit = 3;
-                    Shield = 4;
                     while (UnusedStatpoints > 0)
                     {
                         rndStat = rnd.NextDouble() * 100;
@@ -358,12 +352,6 @@ namespace Uebung05_GenerateAccountHistoryData
                     }
                     break;
                 case Geartype.B:
-                    Attack = 3;
-                    Defence = 3;
-                    Evasion = 3;
-                    Fuel = 3;
-                    Spirit = 3;
-                    Shield = 3;
                     while (UnusedStatpoints > 0)
                     {
                         rndStat = rnd.NextDouble() * 100;
@@ -431,12 +419,6 @@ namespace Uebung05_GenerateAccountHistoryData
                     }
                     break;
                 case Geartype.I:
-                    Attack = 4;
-                    Defence = 2;
-                    Evasion = 4;
-                    Fuel = 3;
-                    Spirit = 3;
-                    Shield = 2;
                     while (UnusedStatpoints > 0)
                     {
                         rndStat = rnd.NextDouble() * 100;
@@ -508,12 +490,6 @@ namespace Uebung05_GenerateAccountHistoryData
                     }
                     break;
                 case Geartype.M:
-                    Attack = 2;
-                    Defence = 4;
-                    Evasion = 2;
-                    Fuel = 3;
-                    Spirit = 4;
-                    Shield = 3;
                     while (UnusedStatpoints > 0)
                     {
                         rndStat = rnd.NextDouble() * 100;

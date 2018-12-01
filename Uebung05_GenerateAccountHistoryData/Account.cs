@@ -538,7 +538,7 @@ namespace Uebung05_GenerateAccountHistoryData
             }
         }
 
-        private DateTime GetRandomRegistrationTime(DateTime registrationDate)
+        public DateTime GetRandomRegistrationTime(DateTime registrationDate)
         {
             registrationDate = registrationDate.AddHours(rnd.Next(23)).AddMinutes(rnd.Next(59)).AddSeconds(rnd.Next(59));
             return registrationDate;

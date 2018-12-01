@@ -141,7 +141,9 @@ namespace Uebung05_GenerateAccountHistoryData
                     #endif
                     ;
                 var user = testUsers.Generate();
+                #if DEBUG
                 Console.WriteLine(user);
+                #endif
                 temp.Loginname = user.Loginname;
                 temp.Password = user.Password;
                 temp.CharacterName = user.Loginname;
@@ -153,7 +155,7 @@ namespace Uebung05_GenerateAccountHistoryData
             foreach (Account account in accounts)
             {
                 random = new ChooseRandom(rnd);
-                if (rnd.NextDouble() < 0.001d)
+                if (random.LastLogin)
                 {
                     var testUsers = new Faker<User>()
                     //Optional: Call for objects that have complex initialization
@@ -175,29 +177,27 @@ namespace Uebung05_GenerateAccountHistoryData
                         ;
                     var user = testUsers.Generate();
                     newAccount = account;
-                    if (random.LastLogin)
+                    if (random.CharacterName)
                     {
-                        if (random.CharacterName)
+                        newAccount.Loginname = user.Loginname;
+                    }
+                    if (random.Levelpercentage)
+                    {
+                        double maxLevelPerDay = account.GetMaxLevelPerDay();
+                        if (maxLevelPerDay >= 1.0d)
                         {
-                            newAccount.Loginname = user.Loginname;
+                            int level = rnd.Next(0, (int)maxLevelPerDay);
+                            newAccount.Level = account.Level + level;
+                            maxLevelPerDay -= (int)maxLevelPerDay;
                         }
-                        if (random.Levelpercentage)
+                        newAccount.Levelpercentage = account.Levelpercentage + rnd.NextDouble() * (maxLevelPerDay * 100);
+                        if (newAccount.Levelpercentage > 99.99d)
                         {
-                            double maxLevelPerDay = account.GetMaxLevelPerDay();
-                            if (maxLevelPerDay >= 1.0d)
-                            {
-                                int level = rnd.Next(0, (int)maxLevelPerDay);
-                                newAccount.Level = account.Level + level;
-                                maxLevelPerDay -= (int)maxLevelPerDay;
-                            }
-                            newAccount.Levelpercentage = account.Levelpercentage + rnd.NextDouble() * (maxLevelPerDay * 100);
-                            if (newAccount.Levelpercentage > 99.99d)
-                            {
-                                newAccount.Level++;
-                                newAccount.Levelpercentage -= 99.99d;
-                            }
+                            newAccount.Level++;
+                            newAccount.Levelpercentage -= 99.99d;
                         }
                     }
+                    newAccount.LastLoginDate = account.GetRandomRegistrationTime(registrationDate); //uses method of registrationDate for LastLogin
                     changedData.Add(newAccount);
                 }
             }
@@ -245,7 +245,7 @@ namespace Uebung05_GenerateAccountHistoryData
             foreach (Account account in newAccounts)
             {
                 account.Id = id;
-                #if DEBUG
+            #if DEBUG
                 if (account.Levelpercentage > max)
                 {
                     max = account.Levelpercentage;

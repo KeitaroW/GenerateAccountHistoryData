@@ -40,7 +40,7 @@ if not exists
 	WHERE TABLE_NAME = 'AccountTmp'
 )
 
-CREATE TABLE CustomerTmp(
+CREATE TABLE AccountsTmp(
 	[Id] [int] NOT NULL,
 	[Loginname] [char](30) NOT NULL,
 	[Password] [char](20) NOT NULL,

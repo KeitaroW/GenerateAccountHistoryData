@@ -225,13 +225,52 @@ namespace Uebung05_GenerateAccountHistoryData
             Spi = 0;                        //maxValue Int32.MaxValue
             Credits = 0;                    //maxValue Int32.MaxValue
             Fame = 0;                       //maxValue Int32.MaxValue
-            SetRandomStats();
+            SetBaseStats();
             Brigade = "";
         }
 
         public string GetRandomBrigade()
         {
             return (Nation.Equals("ANI")) ? Brigades_ANI[rnd.Next(Brigades_ANI.Length)] : Brigades_BCU[rnd.Next(Brigades_BCU.Length)];
+        }
+
+        private void SetBaseStats()
+        {
+            switch (Geartype)
+            {
+                case Geartype.A:
+                    Attack = 4;
+                    Defence = 3;
+                    Evasion = 1;
+                    Fuel = 3;
+                    Spirit = 3;
+                    Shield = 4;
+                    break;
+                case Geartype.B:
+                    Attack = 3;
+                    Defence = 3;
+                    Evasion = 3;
+                    Fuel = 3;
+                    Spirit = 3;
+                    Shield = 3;
+                    break;
+                case Geartype.I:
+                    Attack = 4;
+                    Defence = 2;
+                    Evasion = 4;
+                    Fuel = 3;
+                    Spirit = 3;
+                    Shield = 2;
+                    break;
+                case Geartype.M:
+                    Attack = 2;
+                    Defence = 4;
+                    Evasion = 2;
+                    Fuel = 3;
+                    Spirit = 4;
+                    Shield = 3;
+                    break;
+            }
         }
 
         public void SetRandomStats()

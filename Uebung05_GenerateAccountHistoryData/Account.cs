@@ -217,7 +217,7 @@ namespace Uebung05_GenerateAccountHistoryData
         {
             this.rnd = rnd;
             RegistrationDate = GetRandomRegistrationTime(registrationDate);
-            LastLoginDate = GetRandomLastLoginTime(registrationDate);
+            LastLoginDate = GetRandomLastLoginTime(RegistrationDate);
             Nation = GetRandomNation();
             Geartype = (Geartype)rnd.Next(4);
             Level = rnd.Next(1, 116);
@@ -546,7 +546,7 @@ namespace Uebung05_GenerateAccountHistoryData
 
         private DateTime GetRandomLastLoginTime(DateTime registrationDate)
         {
-            registrationDate = registrationDate.AddMonths(rnd.Next(12)).AddDays(rnd.Next(31)).AddHours(rnd.Next(23)).AddMinutes(rnd.Next(59)).AddSeconds(rnd.Next(59));
+            registrationDate = registrationDate.AddHours(rnd.Next(22-registrationDate.Hour)).AddMinutes(rnd.Next(59)).AddSeconds(rnd.Next(59));
             return registrationDate;
         }
 

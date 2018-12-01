@@ -85,12 +85,11 @@ Id in
 ;
 
 
-INSERT INTO AccountHistory (Id, Loginname, Password, RegistrationDate, LastLoginDate, Charactername, Nation, Geartype, Level,
+INSERT INTO AccountHistory (Id, RecordStartDate, RecordEndDate, Loginname, Password, RegistrationDate, LastLoginDate, Charactername, Nation, Geartype, Level,
 			Levelpercentage, Spi, Credits, Fame, Brigade, Attack, Defence, Evasion, Fuel, Spirit, Shield, UnusedStatpoints)
 SELECT  udt.Id,
 		dat.RSD,
 		'9999-12-31',
-		udt.Id,
 		udt.Loginname,
 		udt.Password,
 		udt.RegistrationDate,

@@ -24,7 +24,7 @@ namespace Uebung05_GenerateAccountHistoryData
                 for (int i = 0; i < numOfDays; i++)
                 {
                     registrationDay = new RegistrationDay(rowsPerDay, i, dateTime, rnd);
-                    accounts = registrationDay.GenerateAccountData();
+                    accounts = registrationDay.GenerateAccountData(accounts);
                     dateTime = dateTime.AddDays(1);
                 }
                 Console.Read();
@@ -42,7 +42,7 @@ namespace Uebung05_GenerateAccountHistoryData
                 for (int i = 0; i < numOfDays; i++)
                 {
                     registrationDay = new RegistrationDay(rowsPerDay, i, dateTime, rnd, args[0]);
-                    accounts = registrationDay.GenerateAccountData();
+                    accounts = registrationDay.GenerateAccountData(accounts);
                     dateTime = dateTime.AddDays(1);
                 }
                 Console.Read();

@@ -554,5 +554,15 @@ namespace Uebung05_GenerateAccountHistoryData
         {
             return (rnd.Next(2) == 1) ? "ANI" : "BCU";
         }
+
+        public double GetMaxLevelPerDay()
+        {
+            double diff = 115 - Level;
+            if (Level >= 100)
+            {
+                return diff * 0.05d;
+            }
+            return diff/10d;
+        }
     }
 }

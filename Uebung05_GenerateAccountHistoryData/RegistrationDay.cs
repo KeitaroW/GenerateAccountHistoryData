@@ -227,7 +227,7 @@ namespace Uebung05_GenerateAccountHistoryData
                     {
                         Account changed = changedData.Find(a => a.Id == account.Id);
                         merged.Add(changed);
-                        file.Write(changed.Id + "\t" + changed.Loginname + "\t" + changed.Password + "\t" + changed.RegistrationDate.ToString("yyyy-MM-dd hh:mm:ss.fff") + "\t" + changed.LastLoginDate.ToString(/*"yyyyMMddHHmmss" yyyy-MM-dd hh:mm:ss.fff yyyy-MM-ddTHH:mm:ss*/"yyyy-MM-dd hh:mm:ss.fff") + "\t" +
+                        file.Write(changed.Id + "\t" + changed.Loginname + "\t" + changed.Password + "\t" + changed.RegistrationDate.ToString("yyyy-MM-dd HH:mm:ss.fff") + "\t" + changed.LastLoginDate.ToString(/*"yyyyMMddHHmmss" yyyy-MM-dd hh:mm:ss.fff yyyy-MM-ddTHH:mm:ss*/"yyyy-MM-dd hh:mm:ss.fff") + "\t" +
                             changed.CharacterName + "\t" + changed.Nation + "\t" + changed.Geartype + "\t" + changed.Level + "\t" + changed.Levelpercentage.ToString("0.##") + "\t" + changed.Spi +
                             "\t" + changed.Credits + "\t" + changed.Fame + "\t" + changed.Brigade + "\t" + changed.Attack + "\t" + changed.Defence + "\t" + changed.Evasion + "\t" +
                             changed.Fuel + "\t" + changed.Spirit + "\t" + changed.Shield + "\t" + changed.UnusedStatpoints + "\n");
@@ -235,7 +235,7 @@ namespace Uebung05_GenerateAccountHistoryData
                     else
                     {
                         merged.Add(account);
-                        file.Write(account.Id + "\t" + account.Loginname + "\t" + account.Password + "\t" + account.RegistrationDate.ToString("yyyy-MM-dd hh:mm:ss.fff") + "\t" + account.LastLoginDate.ToString(/*"yyyyMMddHHmmss" yyyy-MM-dd hh:mm:ss.fff yyyy-MM-ddTHH:mm:ss*/"yyyy-MM-dd hh:mm:ss.fff") + "\t" +
+                        file.Write(account.Id + "\t" + account.Loginname + "\t" + account.Password + "\t" + account.RegistrationDate.ToString("yyyy-MM-dd HH:mm:ss.fff") + "\t" + account.LastLoginDate.ToString(/*"yyyyMMddHHmmss" yyyy-MM-dd hh:mm:ss.fff yyyy-MM-ddTHH:mm:ss*/"yyyy-MM-dd hh:mm:ss.fff") + "\t" +
                             account.CharacterName + "\t" + account.Nation + "\t" + account.Geartype + "\t" + account.Level + "\t" + account.Levelpercentage.ToString("0.##") + "\t" + account.Spi +
                             "\t" + account.Credits + "\t" + account.Fame + "\t" + account.Brigade + "\t" + account.Attack + "\t" + account.Defence + "\t" + account.Evasion + "\t" +
                             account.Fuel + "\t" + account.Spirit + "\t" + account.Shield + "\t" + account.UnusedStatpoints + "\n");
@@ -247,7 +247,7 @@ namespace Uebung05_GenerateAccountHistoryData
             foreach (Account account in newAccounts)
             {
                 account.Id = id;
-            #if DEBUG
+                #if DEBUG
                 if (account.Levelpercentage > max)
                 {
                     max = account.Levelpercentage;
@@ -260,7 +260,7 @@ namespace Uebung05_GenerateAccountHistoryData
                 }
                 #endif
                 merged.Add(account);
-                file.Write(account.Id + "\t" + account.Loginname + "\t" + account.Password + "\t" + account.RegistrationDate.ToString("yyyy-MM-dd hh:mm:ss.fff") + "\t" + account.LastLoginDate.ToString(/*"yyyyMMddHHmmss" yyyy-MM-dd hh:mm:ss.fff yyyy-MM-ddTHH:mm:ss*/"yyyy-MM-dd hh:mm:ss.fff") + "\t" +
+                file.Write(account.Id + "\t" + account.Loginname + "\t" + account.Password + "\t" + account.RegistrationDate.ToString("yyyy-MM-dd HH:mm:ss.fff") + "\t" + account.LastLoginDate.ToString(/*"yyyyMMddHHmmss" yyyy-MM-dd hh:mm:ss.fff yyyy-MM-ddTHH:mm:ss*/"yyyy-MM-dd hh:mm:ss.fff") + "\t" +
                     account.CharacterName + "\t" + account.Nation + "\t" + account.Geartype + "\t" + account.Level + "\t" + account.Levelpercentage.ToString("0.##") + "\t" + account.Spi +
                     "\t" + account.Credits + "\t" + account.Fame + "\t" + account.Brigade + "\t" + account.Attack + "\t" + account.Defence + "\t" + account.Evasion + "\t" +
                     account.Fuel + "\t" + account.Spirit + "\t" + account.Shield + "\t" + account.UnusedStatpoints + "\n");

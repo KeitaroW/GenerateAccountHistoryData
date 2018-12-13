@@ -245,7 +245,7 @@ namespace Uebung05_GenerateAccountHistoryData
                     if (newAccount.Spi + random.Spi < 0)
                         newAccount.Spi = 0;
                     if (random.Brigade)
-                        newAccount.GetRandomBrigade();
+                        newAccount.Brigade = newAccount.GetRandomBrigade();
                     newAccount.Fame += random.Fame;
                     newAccount.LastLoginDate = account.GetRandomRegistrationTime(registrationDate); //uses method of registrationDate for LastLogin
                     changedData.Add(newAccount);
